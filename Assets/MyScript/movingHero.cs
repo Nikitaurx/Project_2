@@ -5,7 +5,7 @@ using UnityEngine;
 public class movingHero : MonoBehaviour
 {
     [SerializeField] private float movementSpeed = 5f;
-    // [SerializeField] private Animator _animator;
+    [SerializeField] private Animator _animator;
 
     // private bool runForward = false;
     // private bool runBackward = false;
@@ -14,6 +14,11 @@ public class movingHero : MonoBehaviour
     private bool death = false;
 
     private Vector2 velocity;
+
+    void Start()
+    {
+        _animator = GetComponent<Animator>();
+    }
 
     private void Update()
     {
@@ -31,7 +36,76 @@ public class movingHero : MonoBehaviour
         // AnimationLeft();
         // AnimationDeath();
 
+        if (Input.GetKey(KeyCode.W))
+        {
+            _animator.SetFloat("Speed", 1);
+            _animator.SetFloat("ForwardBackward", 1);
+            _animator.SetFloat("LeftRight", 0);
 
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                _animator.SetFloat("Speed", 2);
+                _animator.SetFloat("ForwardBackward", 1);
+                _animator.SetFloat("LeftRight", 0);
+                movementSpeed = 20;
+            }
+            movementSpeed = 10;
+        }
+        else if (Input.GetKey(KeyCode.S))
+        {
+            _animator.SetFloat("Speed", 1);
+            _animator.SetFloat("ForwardBackward", -1);
+            _animator.SetFloat("LeftRight", 0);
+        }
+        else if (Input.GetKey(KeyCode.A))
+        {
+            _animator.SetFloat("Speed", 1);
+            _animator.SetFloat("ForwardBackward", 1);
+            _animator.SetFloat("LeftRight", -1);
+        }
+        else if (Input.GetKey(KeyCode.D))
+        {
+            _animator.SetFloat("Speed", 1);
+            _animator.SetFloat("ForwardBackward", 1);
+            _animator.SetFloat("LeftRight", 1);
+        }
+        else
+        {
+            _animator.SetFloat("ForwardBackward", 0);
+            _animator.SetFloat("Speed", 0);
+            _animator.SetFloat("LeftRight", 0);
+        }
+
+    }
+
+    public void AnimationForward()
+    {
+        if (Input.GetKey(KeyCode.W))
+        {
+            _animator.SetFloat("Speed", 1);
+            _animator.SetFloat("ForwardBackward", 1);
+            _animator.SetFloat("LeftRight", 0);
+
+        }
+        else
+        {
+            _animator.SetFloat("ForwardBackward", 0);
+            _animator.SetFloat("Speed", 0);
+            _animator.SetFloat("LeftRight", 0);
+        }
+    }
+    public void AnimationBackward()
+    {
+        if (Input.GetKey(KeyCode.S))
+        {
+            _animator.SetFloat("ForwardBackward", -1);
+            _animator.SetFloat("Speed", 1);
+        }
+        else
+        {
+            _animator.SetFloat("ForwardBackward", 0);
+            _animator.SetFloat("Speed", 0);
+        }
     }
 
     // private void AnimationForward()
