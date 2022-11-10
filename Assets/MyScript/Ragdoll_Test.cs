@@ -40,7 +40,7 @@ public class Ragdoll_Test : MonoBehaviour
         {
             linkForLookObj.checkLookObj = true;
         }
-        else linkForLookObj.checkLookObj = false;
+        //else linkForLookObj.checkLookObj = false;
     }
     void Awake()
     {
