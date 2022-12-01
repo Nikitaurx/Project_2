@@ -1,0 +1,13 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class Quality_change : MonoBehaviour
+{
+    [SerializeField] public Dropdown dropdown;
+    public void checkdropdown()
+    {
+        QualitySettings.SetQualityLevel(dropdown.value, true);//Изменяем уровен графики
+    }
+}
